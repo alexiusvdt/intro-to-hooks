@@ -1,22 +1,10 @@
 import React, { useState, useEffect } from "react";
+import useTimer from './hooks/useTimer';
 
-function Timer() {
-  const [isActive, setIsActive] = useState(false);
-  const [timer, setTimer] = useState(0);
-
-  useEffect(() => {
-    let interval;
-
-    if (isActive) {
-      interval = setInterval(() => {
-        setTimer(timerState => timerState + 1)
-      }, 1000
-    )}
-  
-    //cleanup method using js built-in clearInterval
-    //only runs when isActive changes thanks to dep. array
-  return () => clearInterval(interval);
-  }, [isActive]);
+function Timer(){
+  // new!
+  // note that we can call these vars whatever we want & reference them here as such
+  const [isActive, timer, setIsActive] = useTimer();
 
   return (
     <React.Fragment>
